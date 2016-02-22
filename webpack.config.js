@@ -8,7 +8,7 @@ module.exports = {
   progress: true,
 	entry: './src/main.js',
 	output: {
-		path: path.join(__dirname, "build"),
+		path: path.join(__dirname, "build/"),
 		publicPath: 'build/',
     filename: 'bundle.js',
 	},

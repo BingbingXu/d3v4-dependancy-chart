@@ -1,6 +1,7 @@
 
 const gulp = require('gulp');
 const gutil = require("gulp-util");
+const uglify = require('gulp-uglify');
 
 const webpackConfig = require('./webpack.config');
 const webpack = require("webpack");
@@ -10,21 +11,17 @@ const stream = require('webpack-stream');
 const paths = {
    HTML: 'index.html',
    JS: ['src/**/*.js'],
-   DEST: 'build',
-   ASSETS: 'assets/**/*'
+   BUILD: 'build'
  };
 
 // The development server (the recommended option for development)
-gulp.task("default", ["copy", "webpack-dev-server"]);
-
-gulp.task('copy', [], function() {
-  return gulp.src(paths.ASSETS)
-    .pipe(gulp.dest(paths.DEST, null));
-});
+gulp.task("default", ["webpack-dev-server"]);
+gulp.task("compile", ["webpack"]);
 
 gulp.task('webpack', [], function() {
-  return gulp.src(path.JS) // gulp looks for all source files under specified path
+  return gulp.src(paths.JS) // gulp looks for all source files under specified path
     .pipe(stream(webpackConfig)) // blend in the webpack config into the source files
+    .pipe(uglify())
     .pipe(gulp.dest(paths.BUILD));
 });
 

@@ -84,13 +84,17 @@ function renderGraph(data) {
     .attr("fill", 'white')
     .attr("filter", 'url(#shadow)');
 
-  node.append("image")
-    .attr("xlink:href", "build/images/d3.svg")
-    .attr("x", -8)
-    .attr("y", -8)
-    .attr("width", 16)
-    .attr("height", 16);
-
+  // Get d3 organisation image to use as the nodes 
+  fetch('https://api.github.com/orgs/d3')
+    .then(response => response.json())
+    .then(data => {
+      node.append("image")
+        .attr("xlink:href", data.avatar_url)
+        .attr("x", -9)
+        .attr("y", -9)
+        .attr("width", 18)
+        .attr("height", 18);
+    });
 
   node.append("text")
     .attr("dx", 20)
