@@ -1,0 +1,123 @@
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+
+html {
+  height: 100%;
+}
+body {
+  background: linear-gradient(270deg, #303137, #101117);
+  background-size: 200% 200%;
+  // background-color: white;
+  -webkit-animation: Background 18s ease infinite;
+  -moz-animation: Background 18s ease infinite;
+  animation: Background 18s ease infinite;
+
+  color: #eee;
+  display: flex;
+  flex-direction: column;
+  padding: 4rem 1rem 4rem 1rem;
+}
+
+@-webkit-keyframes Background {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes Background {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes Background {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+.link {
+  stroke: #555;
+  stroke-width: 2;
+}
+
+.node text {
+  pointer-events: none;
+  fill: #eee;
+  font-weight: 300;
+  font-size: 13px;
+  font-family: 'Open sans', 'Helvetica', sans-serif;
+}
+#triangle {
+  fill: #aaa;
+}
+
+.title {
+  font-family: 'Open sans', 'Helvetica', sans-serif;
+  text-align: center;
+  padding-bottom: 4rem;
+  margin: 0;
+  letter-spacing: 4px;
+  font-weight: 300;
+  flex: 0 0 auto;
+
+  span {
+    z-index: 1;
+  }
+}
+
+#svg-container {
+  flex: 1 1 auto;
+  position: relative;
+}
+#graph {
+  overflow: visible;
+  position: absolute;
+  top:  0; bottom:  0;
+  left: 0; right:   0;
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+// Spinner
+
+@keyframes Spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spinner {
+  position: absolute;
+  top:  0; bottom:  0;
+  left: 0; right:   0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:before {
+    content: 'Loading…';
+    width: 45px;
+    height: 45px;
+    display: block;
+  }
+  &.spinner-sm:before {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.spinner:not(:required) {
+  &:before {
+    content: '';
+    border-radius: 50%;
+    border: 5px solid rgba(#aaa, 0.4);
+    border-top-color: rgba(#fff, 0.8);
+    animation: Spinner 0.75s linear infinite;
+    -webkit-animation: Spinner 0.75s linear infinite;
+  }
+  &.spinner-sm:before {
+    border-width: 3px;
+  }
+  &.spinner-light:before {
+    border-color: rgba(#eee, 0.4);
+    border-top-color: rgba(#fff, 0.8);
+  }
+}
