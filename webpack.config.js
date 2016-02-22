@@ -9,6 +9,7 @@ module.exports = {
 	entry: './src/main.js',
 	output: {
 		path: path.join(__dirname, "build"),
+		publicPath: 'build/',
     filename: 'bundle.js',
 	},
 	module: {
@@ -22,8 +23,7 @@ module.exports = {
 			},
       {
         test: /\.scss$/,
-        loaders: ['style', 'css?sourceMap&importLoaders=1', 'sass'],
-				include: 'sass'
+        loaders: ['style', 'css?sourceMap&importLoaders=1', 'sass']
       },
       {
         test: /\.json$/,
@@ -32,13 +32,6 @@ module.exports = {
 		]
 	},
 
-	// LOADER config
-	cssLoader: {
-		sourceMap: true,
-		modules: false,			// Enables local scoped css (hash-like class names specific to components)
-		localIdentName: '[local]___[hash:base64:5]',		// Name format for local scoped class names (if set)
-		importLoaders: 1		// Which loaders should be applied to @imported resources (How many after css loader)
-	},
 	sassLoader: {
 		sourceMap: true,
 		outputStyle: 'expanded'

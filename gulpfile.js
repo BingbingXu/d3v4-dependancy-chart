@@ -9,27 +9,33 @@ const stream = require('webpack-stream');
 
 const paths = {
    HTML: 'index.html',
-   ALL: ['src/**/*.js'],
-   DEST: 'build'
+   JS: ['src/**/*.js'],
+   DEST: 'build',
+   ASSETS: 'assets/**/*'
  };
 
 // The development server (the recommended option for development)
-gulp.task("default", ["webpack-dev-server"]);
+gulp.task("default", ["copy", "webpack-dev-server"]);
+
+gulp.task('copy', [], function() {
+  return gulp.src(paths.ASSETS)
+    .pipe(gulp.dest(paths.DEST, null));
+});
 
 gulp.task('webpack', [], function() {
-  return gulp.src(path.ALL) // gulp looks for all source files under specified path
+  return gulp.src(path.JS) // gulp looks for all source files under specified path
     .pipe(stream(webpackConfig)) // blend in the webpack config into the source files
     .pipe(gulp.dest(paths.BUILD));
 });
 
 gulp.task('watch', function() {
-  gulp.watch(paths.ALL, ['webpack']);
+  gulp.watch([paths.JS, paths.HTML], ['webpack']);
 });
 
 gulp.task("webpack-dev-server", function(callback) {
   // modify some webpack config options
   const config = Object.create(webpackConfig);
-  config.devtool = "eval";
+  config.devtool = "inline-source-map";
   config.debug = true;
 
   // Start a webpack-dev-server
