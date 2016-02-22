@@ -2,7 +2,7 @@
 import { layout } from 'd3';
 import data from '../data/data.json';
 
-console.log(data);
+console.log("HI", data);
 
 const width = 960;
 const height = 500;
