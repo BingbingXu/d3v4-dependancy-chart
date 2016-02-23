@@ -18,15 +18,17 @@ const paths = {
 gulp.task("default", ["webpack-dev-server"]);
 gulp.task("compile", ["webpack"]);
 
+
+gulp.task('watch', function() {
+  gulp.watch([paths.JS, paths.HTML], ['webpack']);
+});
+
+
 gulp.task('webpack', [], function() {
   return gulp.src(paths.JS) // gulp looks for all source files under specified path
     .pipe(stream(webpackConfig)) // blend in the webpack config into the source files
     .pipe(uglify())
     .pipe(gulp.dest(paths.BUILD));
-});
-
-gulp.task('watch', function() {
-  gulp.watch([paths.JS, paths.HTML], ['webpack']);
 });
 
 gulp.task("webpack-dev-server", function(callback) {

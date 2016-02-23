@@ -23,7 +23,7 @@ module.exports = {
 			},
       {
         test: /\.scss$/,
-        loaders: ['style', 'css?sourceMap&importLoaders=1', 'sass']
+        loaders: ['style', 'css?sourceMap&importLoaders=1', 'autoprefixer?browsers=last 2 version', 'sass']
       },
       {
         test: /\.json$/,

@@ -3,19 +3,18 @@
 
 html {
   height: 100%;
+  overflow: hidden;
 }
 body {
-  background: linear-gradient(270deg, #303137, #101117);
+  background: linear-gradient(270deg, #2c2b32, darken(#2c2b32, 8%));
   background-size: 200% 200%;
-  // background-color: white;
   -webkit-animation: Background 18s ease infinite;
   -moz-animation: Background 18s ease infinite;
   animation: Background 18s ease infinite;
 
-  color: #eee;
   display: flex;
   flex-direction: column;
-  padding: 4rem 1rem 4rem 1rem;
+  padding: 1rem;
 }
 
 @-webkit-keyframes Background {
@@ -50,18 +49,25 @@ body {
   fill: #aaa;
 }
 
+.background {
+  position: absolute;
+  top:  0; bottom:  0;
+  left: 0; right:   0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: blur(1px);
+}
 .title {
   font-family: 'Open sans', 'Helvetica', sans-serif;
   text-align: center;
-  padding-bottom: 4rem;
   margin: 0;
-  letter-spacing: 4px;
-  font-weight: 300;
+  letter-spacing: 20px;
+  font-size: 240px;
+  font-weight: 700;
   flex: 0 0 auto;
-
-  span {
-    z-index: 1;
-  }
+  color: darken(#2c2b32, 6%);
+  text-shadow: 8px 8px 18px rgba(black, 0.3);
 }
 
 #svg-container {
